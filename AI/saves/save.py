@@ -1,17 +1,20 @@
 #!/usr/bin/env python3
 
 import numpy as np
+from os import chdir, mkdir, path
 from random import randint
-from os import chdir, mkdir
+
+from ..wrappers import b
 
 def cd():
-	path = "AI/models"
+	p = path.abspath("AI/models")
 	try:
-		chdir(path)
+		chdir(p)
 	except FileNotFoundError:
-		mkdir(path)
-		chdir(path)
+		mkdir(p)
+		chdir(p)
 
+@b
 def SaveData(W1, b1, W2, b2):
 	# Function for saving a model
 	cd()
@@ -22,6 +25,7 @@ def SaveData(W1, b1, W2, b2):
 	np.save(f"{n}-b2.npy", b2)
 	return n
 
+@b
 def LoadData(n):
 	# Function for loading a saved model
 
